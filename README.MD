@@ -1,11 +1,11 @@
-# ng2-validator-messages
+# ng2-validation-message
 
 ## Installation
 
 To install this library, run:
 
 ```bash
-$ npm install ng2-validator-messages --save
+$ npm install ng2-validation-message --save
 ```
 
 ## Consuming your library
@@ -13,7 +13,7 @@ $ npm install ng2-validator-messages --save
 Once you have published your library to npm, you can import your library in any Angular application by running:
 
 ```bash
-$ npm install ng2-validator-messages
+$ npm install ng2-validation-message
 ```
 
 and then from your Angular `AppModule`:
@@ -25,7 +25,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { Ng2ValidatorMessages } from 'ng2-validator-messages';
+import { Ng2ValidatorMessages } from 'ng2-validation-message';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ Once your library is imported, you can use the `validator` directive on input li
 ```html
 <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
   <div class="form-group">
-    <input type="text" class="form-control" name="name" ngModel minlength="5" validator>
+    <input type="text" class="form-control" name="name" ngModel minlength="5" validation-message>
   </div>
   <div *ngIf="!form.valid">Invalid</div>
   <button class="btn btn-primary">Submit</button>
