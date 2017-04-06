@@ -1,24 +1,24 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ValidatorDirective } from './src/ng2-validator-messages.directive';
+import { ValidationMessageDirective } from './src/ng2-validation-message.directive';
 
-export * from './src/ng2-validator-messages.directive';
+export * from './src/ng2-validation-message.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    ValidatorDirective
+    ValidationMessageDirective
   ],
   exports: [
-    ValidatorDirective
-  ]
+    ValidationMessageDirective
+  ],
 })
-export class Ng2ValidatorMessages {
+export class Ng2ValidationMessage {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: Ng2ValidatorMessages,
+      ngModule: Ng2ValidationMessage,
     };
   }
 }

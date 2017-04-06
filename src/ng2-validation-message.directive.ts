@@ -3,9 +3,9 @@ import { NgControl } from '@angular/forms';
 import * as $ from 'jquery';
 
 @Directive({
-  selector: '[validator]'
+  selector: '[validation-message]'
 })
-export class ValidatorDirective {
+export class ValidationMessageDirective {
 
   private target: any;
 
