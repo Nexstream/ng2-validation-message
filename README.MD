@@ -8,15 +8,7 @@ To install this library, run:
 $ npm install ng2-validation-message --save
 ```
 
-## Consuming your library
-
-Once you have published your library to npm, you can import your library in any Angular application by running:
-
-```bash
-$ npm install ng2-validation-message
-```
-
-and then from your Angular `AppModule`:
+## Basic
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -41,15 +33,34 @@ import { Ng2ValidationMessage } from 'ng2-validation-message';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use the `validator` directive on input like following example:
+Once your library is imported, you can use the `validationMessage` directive on input like following example:
 ```html
 <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
   <div class="form-group">
-    <input type="text" class="form-control" name="name" ngModel minlength="5" validation-message>
+    <input type="text" class="form-control" name="name" ngModel minlength="5" validationMessage>
   </div>
-  <div *ngIf="!form.valid">Invalid</div>
   <button class="btn btn-primary">Submit</button>
 </form>
+```
+
+## Custom Message
+To use custom message, you have to provide the message to "validationMessage" directive.
+```html
+<form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+  <div class="form-group">
+    <input type="text" class="form-control" name="name" ngModel minlength="5" validationMessage="This is a custom message for this field">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+```
+
+## Set default error message
+To set the default message for certain error, use `ValidationMessageService.setRuleMessage('required', 'New default message for required validator')` in your startup module.
+
+```typescript
+constructor(validationMessageService: ValidationMessageService) {
+  this.validationMessageService.setRuleMessage('required', 'New default message');
+}
 ```
 
 ## Development
