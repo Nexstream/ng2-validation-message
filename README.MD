@@ -25,7 +25,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { Ng2ValidatorMessages } from 'ng2-validation-message';
+import { Ng2ValidationMessage } from 'ng2-validation-message';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { Ng2ValidatorMessages } from 'ng2-validation-message';
   ],
   imports: [
     BrowserModule,
-    Ng2ValidatorMessages
+    Ng2ValidationMessage
   ],
   providers: [],
   bootstrap: [AppComponent]
