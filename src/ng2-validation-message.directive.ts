@@ -1,9 +1,10 @@
 import {Directive, HostListener, Input, ElementRef, OnInit} from '@angular/core';
 import {NgControl} from '@angular/forms';
 import * as $ from 'jquery';
+import {ValidationMessageService} from './ng2-validation-message.service';
 
 @Directive({
-  selector: '[validationMessage]'
+  selector: '[validationMessage]',
 })
 export class ValidationMessageDirective implements OnInit{
 
@@ -12,7 +13,7 @@ export class ValidationMessageDirective implements OnInit{
   private target: any;
   private formGroup: any;
 
-  constructor(private el: ElementRef, private formControl: NgControl) {
+  constructor(private el: ElementRef, private formControl: NgControl, private validationMessageService: ValidationMessageService) {
     this.target = $(el.nativeElement);
     this.formGroup = this.target.closest('.form-group');
 
@@ -22,8 +23,6 @@ export class ValidationMessageDirective implements OnInit{
   }
 
   ngOnInit() {
-    console.log('customMessage', this.customMessage);
-    console.log(this.formControl);
   }
 
   resetFormGroup() {
@@ -31,18 +30,32 @@ export class ValidationMessageDirective implements OnInit{
     this.formGroup.find('.help-block').remove();
   }
 
-  getMessage(): string {
+  getMessage(error?: string): string {
     if (this.customMessage)
       return this.customMessage;
+    else if (error)
+      return this.validationMessageService.getMessageByError(error);
     else
       return "Please enter a correct value";
+  }
+
+  getError(errors: any): string {
+    for (var key in errors) {
+      if (errors.hasOwnProperty(key))
+        return key;
+    }
+    return '';
   }
 
   checkValidation() {
     this.resetFormGroup();
     if (!this.formControl.valid) {
+
+      let error = this.getError(this.formControl.errors);
+      let message = this.getMessage(error);
+
       this.formGroup.addClass('has-error');
-      this.formGroup.append(`<span class="help-block">${this.getMessage()}</span>`);
+      this.formGroup.append(`<span class="help-block">${message}</span>`);
     }
   }
 
