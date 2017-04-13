@@ -10,13 +10,11 @@ $ npm install ng2-validation-message --save
 
 ## Basic
 
+### Import on root AppModule
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-
-// Import your library
 import { Ng2ValidationMessage } from 'ng2-validation-message';
 
 @NgModule({
@@ -25,7 +23,7 @@ import { Ng2ValidationMessage } from 'ng2-validation-message';
   ],
   imports: [
     BrowserModule,
-    Ng2ValidationMessage
+    Ng2ValidationMessage.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -33,6 +31,25 @@ import { Ng2ValidationMessage } from 'ng2-validation-message';
 export class AppModule { }
 ```
 
+### Import on the module you need
+```typescript
+...
+import {Ng2ValidationMessage} from 'ng2-validation-message';
+
+@NgModule({
+  imports: [
+    ...
+    Ng2ValidationMessage,
+  ],
+  declarations: [
+    Dashboard
+  ],
+  providers: []
+})
+export class DashboardModule {}
+```
+
+### Apply
 Once your library is imported, you can use the `validationMessage` directive on input like following example:
 ```html
 <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
