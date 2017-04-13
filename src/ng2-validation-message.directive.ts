@@ -6,7 +6,7 @@ import {ValidationMessageService} from './ng2-validation-message.service';
 @Directive({
   selector: '[validationMessage]',
 })
-export class ValidationMessageDirective implements OnInit{
+export class ValidationMessageDirective implements OnInit {
 
   @Input('validationMessage') customMessage: string;
 
@@ -49,7 +49,7 @@ export class ValidationMessageDirective implements OnInit{
 
   checkValidation() {
     this.resetFormGroup();
-    if (!this.formControl.valid) {
+    if ((this.formControl.dirty || this.formControl.touched) && !this.formControl.valid) {
 
       let error = this.getError(this.formControl.errors);
       let message = this.getMessage(error);
