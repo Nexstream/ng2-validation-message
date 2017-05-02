@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "module": "commonjs",
-    "target": "ES6",
+    "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowUnusedLabels": false,
@@ -12,6 +12,10 @@
     "outDir": "./dist",
     "typeRoots": [
       "node_modules/@types"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
     ]
   },
   "exclude": [
