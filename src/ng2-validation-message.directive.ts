@@ -53,9 +53,16 @@ export class ValidationMessageDirective implements OnInit {
 
       let error = this.getError(this.formControl.errors);
       let message = this.getMessage(error);
+      let helpBlock = `<span class="help-block">${message}</span>`;
 
       this.formGroup.addClass('has-error');
-      this.formGroup.append(`<span class="help-block">${message}</span>`);
+
+      // locate target to insert help block
+      if(this.formGroup.find('.input-group').length)
+        this.formGroup.find('.input-group').after(helpBlock);
+      else
+        this.formGroup.find('.form-control').after(helpBlock);
+
     }
   }
 
